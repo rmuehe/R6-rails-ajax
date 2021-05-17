@@ -94,3 +94,4 @@ function handle_ajax(event) {
     }
   });
 }
+document.addEventListener('DOMContentLoaded', handle_ajax(event));
