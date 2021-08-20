@@ -1,0 +1,16 @@
+<h1>Ajax Operations on Users and Sessions</h1>
+<p>Find me in app/views/ajax/session.html.erb</p>
+<%= link_to "Members and Facts", "/ajax/home" %>
+<div id="rest-ops">
+<label>user email</label><input id="user-email"><label>user password</label>
+<input id="user-password">
+<button id="create-user" type="button">Create user</button><br>
+<label>user email</label><input id="user-email1"><label>user password</label>
+<input id="user-password1"><button id="logon" type="button">Logon</button><br>
+<button id="logoff" type="button">Logoff</button><br>
+</div>
+<div id="results-div">
+  <p>these are the results</p>
+</div>
+
+<%= javascript_pack_tag 'session_ops' %>

@@ -1,20 +1,24 @@
 function handle_ajax(event) {
   console.log('DOM fully loaded and parsed');
+  const authHeader = localStorage.getItem("authHeader");
   const resultsDiv = document.getElementById('results-div');
   const restOpsDiv = document.getElementById('rest-ops');
-  const listUsersButton = document.getElementById('list-users');
-  const createUserButton = document.getElementById('create-user');
-  const userName = document.getElementById('user-username');
-  const userPassword = document.getElementById('user-password');
-  const updateUserButton = document.getElementById('update-user')
-  const userID = document.getElementById('user-id')
-  const userName1 = document.getElementById('user-username1')
-  const userPassword1 = document.getElementById('user-password1')
-  const users_path = 'http://localhost:3001/api/v1/users'
+  const listMembersButton = document.getElementById('list-members');
+  const createMemberButton = document.getElementById('create-member');
+  const firstName = document.getElementById('member-firstName');
+  const lastName = document.getElementById('member-lastName');
+  const updateMemberButton = document.getElementById('update-member');
+  const memberID = document.getElementById('member-id');
+  const firstName1 = document.getElementById('member-firstName1');
+  const lastName1 = document.getElementById('member-lastName1');
+  const members_path = 'http://localhost:3001/api/v1/members';
 
   restOpsDiv.addEventListener('click', (event) => {
-    if (event.target === listUsersButton) {
-      fetch(users_path).then((response) => {
+    if (event.target === listMembersButton) {
+      fetch(members_path,
+          {  headers: { 'Content-Type': 'application/json',
+          'authorization': authHeader } }
+        ).then((response) => {
         if (response.status === 200) {
           resultsDiv.innerHTML = '';
           response.json().then((data) => {
@@ -31,14 +35,15 @@ function handle_ajax(event) {
         console.log(error);
         alert(error);
       });
-    } else if (event.target === createUserButton) {
+    } else if (event.target === createMemberButton) {
       var dataObject = {
-        username: userName.value,
-        password: userPassword.value
+        first_name: firstName.value,
+        last_name: lastName.value
       }
-      fetch(users_path,
+      fetch(members_path,
         { method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json',
+            'authorization': authHeader },
           body: JSON.stringify(dataObject)
         }
       ).then((response) => {
@@ -58,20 +63,15 @@ function handle_ajax(event) {
           });
         }
       });
-    } else if (event.target === updateUserButton) {
+    } else if (event.target === updateMemberButton) {
       var dataObject = {
-        username: userName1.value,
-        password: userPassword1.value
+        first_name: firstName1.value,
+        last_name: lastName1.value
       }
-      if (dataObject.username === "") {  // blank usernames not supported
-        delete dataObject.username;
-      }
-      if (dataObject.password === "") { // blank passwords not supported
-        delete dataObject.password;
-      }
-      fetch(`${users_path}/${userID.value}`,
+      fetch(`${members_path}/${memberID.value}`,
         { method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json',
+            'authorization': authHeader },
           body: JSON.stringify(dataObject)
         }
       ).then((response) => {
