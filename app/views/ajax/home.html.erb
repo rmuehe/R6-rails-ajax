@@ -1,12 +1,13 @@
 <h1>AJAX</h1>
 <p>Find me in app/views/ajax/home.html.erb</p>
+<%= link_to 'Session', '/ajax/session' %>
 <div id="rest-ops">
-<button id="list-users" type="button">List users</button><br>
-<label>username</label><input id="user-username"><label>password</label>
-<input id="user-password"><button id="create-user" type="button">Create user</button><br>
-<label>user_id</label><input id="user-id" type="number"><label>username</label>
-<input id="user-username1"><label>password</label>
-<input id="user-password1"><button id="update-user" type="button">Update user</button><br>
+<button id="list-members" type="button">List members</button><br>
+<label>member first name</label><input id="member-firstName"><label>member last name</label>
+<input id="member-lastName"><button id="create-member" type="button">Create member</button><br>
+<label>member ID</label><input id="member-id" type="number"><label>member first name</label>
+<input id="member-firstName1"><label>member last name</label>
+<input id="member-lastName1"><button id="update-member" type="button">Update member</button><br>
 </div>
 <div id="results-div"></div>
 <%= javascript_pack_tag 'ajax_ops' %>
