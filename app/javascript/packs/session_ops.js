@@ -9,6 +9,7 @@ function handle_session(event) {
   const userPassword = document.getElementById('user-password');
   const userEmail1 = document.getElementById('user-email1');
   const userPassword1 = document.getElementById('user-password1');
+  // Switched from 3000
   const users_path = 'http://localhost:3001/users';
 
   restOpsDiv.addEventListener('click', (event) => {
@@ -51,6 +52,8 @@ function handle_session(event) {
         "user": {
           email: userEmail.value,
           password: userPassword.value
+          // email: "anything",
+          // password: "also"
         }
       }
       fetch(users_path,
